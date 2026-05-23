@@ -1,0 +1,39 @@
+services:
+  edu-app:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_DB_USERNAME: mongoadmin
+      MONGO_DB_PWD: secret
+    networks:
+      - edupro
+    depends_on:
+      - "edumongodb"
+  edumongodb:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    networks:
+      - edupro
+
+  edumongo-express:
+    image: mongo-express:0.54
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: mongoadmin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: secret
+      ME_CONFIG_MONGODB_SERVER: edumongodb
+    depends_on:
+      - "edumongodb"
+    networks:
+      - edupro
+    restart: on-failure
+
+networks:
+  edupro:
+    driver: bridge
