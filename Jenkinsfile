@@ -36,7 +36,7 @@ pipeline {
                                         export DOCKER_TAG=${DOCKER_TAG}
                                         export MONGO_DB_USERNAME=${MONGO_DB_USERNAME}
                                         export MONGO_DB_PWD=${MONGO_DB_PWD}
-                                        docker-compose -f compose.yml up -d
+                                        dockercompose -f compose.yml up -d
                                         '''
                 }
             }
