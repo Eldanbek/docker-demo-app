@@ -10,7 +10,7 @@ pipeline {
         githubPush() 
 
     }
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -29,8 +29,8 @@ pipeline {
         stage('deploy compose file') {
             steps {
                 withCredentials ([
-                                 string  ( credentialsid: 'mongo-db-username', variable: 'MONGO_DB_USERNAME'),
-                                 string  ( credentialsid: 'mongo-db-password', variable: 'MONGO_DB_PASSWORD')
+                                 string  ( credentialsId: 'mongo-db-username', variable: 'MONGO_DB_USERNAME'),
+                                 string  ( credentialsId: 'mongo-db-password', variable: 'MONGO_DB_PASSWORD')
                                  ]) {
                                      sh '''
                                         export DOCKER_TAG=${DOCKER_TAG}
