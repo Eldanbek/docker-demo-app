@@ -2,7 +2,7 @@ services:
   edu-app:
     build: .
     ports:
-      - 3000:3000
+      - 3020:3000
     environment:
       MONGO_DB_USERNAME: ${MONGO_DB_USERNAME}
       MONGO_DB_PWD: ${MONGO_DB_PASSWORD}
